@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>¡Vamos a tomar!</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -12,7 +12,8 @@
 
   <script>
     const lluvia = document.getElementById("lluvia");
-    const columnas = 30;
+    const esMovil = window.innerWidth < 600;
+    const columnas = esMovil ? 15 : 30;
     const filas = 15;
 
     for (let i = 0; i < columnas; i++) {
