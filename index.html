@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>¡Vamos a tomar!</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="texto-central">¡VAMOS A TOMAR! 💜✨</div>
+  <div class="contenedor-lluvia" id="lluvia"></div>
+
+  <script>
+    const lluvia = document.getElementById('lluvia');
+    const columnas = 30;
+    const filas = 15;
+
+    for (let i = 0; i < columnas; i++) {
+      const col = document.createElement('div');
+      col.className = 'columna';
+
+      for (let j = 0; j < filas; j++) {
+        const span = document.createElement('span');
+        span.textContent = '¡Vamos a tomar!';
+        span.style.animationDelay = `${Math.random() * 3}s`;
+        span.style.animationDuration = `${2 + Math.random() * 1.5}s`;
+        col.appendChild(span);
+      }
+
+      lluvia.appendChild(col);
+    }
+
+    document.addEventListener('click', e => {
+      const cantidad = 30;
+      for (let i = 0; i < cantidad; i++) {
+        const texto = document.createElement('div');
+        texto.className = 'explosion-texto';
+        texto.textContent = '¡Vamos a tomar!';
+        texto.style.left = `${e.clientX}px`;
+        texto.style.top = `${e.clientY}px`;
+
+        const angle = Math.random() * 2 * Math.PI;
+        const dist = 100 + Math.random() * 100;
+        texto.style.setProperty('--x', `${Math.cos(angle) * dist}px`);
+        texto.style.setProperty('--y', `${Math.sin(angle) * dist}px`);
+
+        document.body.appendChild(texto);
+        setTimeout(() => texto.remove(), 1000);
+      }
+    });
+  </script>
+</body>
+</html>
