@@ -14,7 +14,7 @@ body {
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 8vw; /* Adaptable al ancho */
+  font-size: 8vw;
   color: white;
   text-shadow: 0 0 15px #fff, 0 0 35px #fff;
   z-index: 1000;
@@ -45,7 +45,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  min-width: 10px; /* Para evitar colapso en móvil */
+  min-width: 10px;
 }
 
 .columna span {
@@ -95,11 +95,24 @@ body {
   }
 }
 
-/* Media query para móviles */
+/* Estilos especiales para pantallas pequeñas */
 @media (max-width: 600px) {
   .texto-central {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    white-space: normal;
+    padding: 0 10px;
   }
+
+  .columna span {
+    font-size: 0.7rem;
+  }
+
+  .columna {
+    min-width: 15px;
+    margin: 0 3px;
+  }
+}
+
 
   .columna span {
     font-size: 0.8rem;
