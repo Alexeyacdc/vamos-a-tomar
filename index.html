@@ -5,23 +5,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>¡Vamos a tomar!</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+    }
+    .texto-central {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      text-align: center;
+    }
+    .columna {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 0;
+    }
+    .columna span {
+      animation: caer linear infinite;
+      color: violet;
+      font-size: 1rem;
+    }
+    @keyframes caer {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(100vh); }
+    }
+    .explosion-texto {
+      position: absolute;
+      color: #fff;
+      font-size: 1rem;
+      pointer-events: none;
+      animation: explotar 1s ease-out forwards;
+    }
+    @keyframes explotar {
+      to {
+        transform: translate(var(--x), var(--y));
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="texto-central">¡VAMOS A TOMAR! 💜✨</div>
   <div class="contenedor-lluvia" id="lluvia"></div>
 
   <script>
-    const lluvia = document.getElementById('lluvia');
+    const lluvia = document.getElementById("lluvia");
     const columnas = 30;
     const filas = 15;
 
     for (let i = 0; i < columnas; i++) {
-      const col = document.createElement('div');
-      col.className = 'columna';
+      const col = document.createElement("div");
+      col.className = "columna";
+      col.style.left = `${(i / columnas) * 100}vw`;
 
       for (let j = 0; j < filas; j++) {
-        const span = document.createElement('span');
-        span.textContent = '¡Vamos a tomar!';
+        const span = document.createElement("span");
+        span.textContent = "¡Vamos a tomar!";
         span.style.animationDelay = `${Math.random() * 3}s`;
         span.style.animationDuration = `${2 + Math.random() * 1.5}s`;
         col.appendChild(span);
@@ -30,19 +76,19 @@
       lluvia.appendChild(col);
     }
 
-    document.addEventListener('click', e => {
+    document.addEventListener("click", (e) => {
       const cantidad = 30;
       for (let i = 0; i < cantidad; i++) {
-        const texto = document.createElement('div');
-        texto.className = 'explosion-texto';
-        texto.textContent = '¡Vamos a tomar!';
+        const texto = document.createElement("div");
+        texto.className = "explosion-texto";
+        texto.textContent = "¡Vamos a tomar!";
         texto.style.left = `${e.clientX}px`;
         texto.style.top = `${e.clientY}px`;
 
         const angle = Math.random() * 2 * Math.PI;
         const dist = 100 + Math.random() * 100;
-        texto.style.setProperty('--x', `${Math.cos(angle) * dist}px`);
-        texto.style.setProperty('--y', `${Math.sin(angle) * dist}px`);
+        texto.style.setProperty("--x", `${Math.cos(angle) * dist}px`);
+        texto.style.setProperty("--y", `${Math.sin(angle) * dist}px`);
 
         document.body.appendChild(texto);
         setTimeout(() => texto.remove(), 1000);
