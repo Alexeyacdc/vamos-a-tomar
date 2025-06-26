@@ -1,0 +1,94 @@
+/* General */
+body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  overflow: hidden;
+  height: 100vh;
+  font-family: 'Arial Black', sans-serif;
+  position: relative;
+}
+
+/* Texto central */
+.texto-central {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3.5rem;
+  color: white;
+  text-shadow: 0 0 15px #fff, 0 0 35px #fff;
+  z-index: 1000;
+  white-space: nowrap;
+  animation: parpadeo 2s infinite alternate;
+}
+
+@keyframes parpadeo {
+  from { opacity: 1; }
+  to { opacity: 0.8; }
+}
+
+/* Lluvia de texto */
+.contenedor-lluvia {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.columna {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.columna span {
+  color: #b400b4;
+  font-size: 1rem;
+  white-space: nowrap;
+  text-shadow: 0 0 7px #fff, 0 0 20px #b400b4;
+  animation: caer linear infinite;
+  opacity: 0;
+}
+
+@keyframes caer {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  10%, 90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Explosión de texto */
+.explosion-texto {
+  position: absolute;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ff00ff;
+  text-shadow: 0 0 10px #ff00ff, 0 0 30px #b400b4;
+  animation: volar 1s ease-out forwards;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 999;
+}
+
+@keyframes volar {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) scale(1.5);
+    opacity: 0;
+  }
+}
