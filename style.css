@@ -14,12 +14,13 @@ body {
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 3.5rem;
+  font-size: 8vw; /* Adaptable al ancho */
   color: white;
   text-shadow: 0 0 15px #fff, 0 0 35px #fff;
   z-index: 1000;
   white-space: nowrap;
   animation: parpadeo 2s infinite alternate;
+  text-align: center;
 }
 
 @keyframes parpadeo {
@@ -44,6 +45,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  min-width: 10px; /* Para evitar colapso en móvil */
 }
 
 .columna span {
@@ -90,5 +92,16 @@ body {
   100% {
     transform: translate(var(--x), var(--y)) scale(1.5);
     opacity: 0;
+  }
+}
+
+/* Media query para móviles */
+@media (max-width: 600px) {
+  .texto-central {
+    font-size: 2rem;
+  }
+
+  .columna span {
+    font-size: 0.8rem;
   }
 }
